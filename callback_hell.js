@@ -2,7 +2,7 @@ const {
   readdir,
   readFile,
   writeFile
-} = require("fs");
+} = require("fs/promises");  // use "fs/promises"
 const {
   join
 } = require("path");
@@ -29,9 +29,31 @@ const reverseText = str =>
   });
 }); */
 
+const promise = async() => {
+  try{
+  
+    let files = await readdir(inbox)  
+    //console.log(files) files is an array of file
 
+  for(let file of files) {    // Why files.forEach(file => {}) doesn't work???  SyntaxError: await is only valid in async functions and the top level bodies of modules
+    let inboxFile = join(inbox, file)
+    let outboxFile = join(outbox, file)
 
-const promiseReadDir = (inbox) =>{
+    let data = await readFile(inboxFile, "utf8")
+
+    await writeFile(outboxFile, reverseText(data))
+
+    console.log(`${file} was successfully saved in the outbox!`)
+  }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+promise()
+
+// Here another solution with promise, only reguire("fs"), error message works but there is another little callback_hell
+/* const promiseReadDir = (inbox) =>{
 return new Promise((resolve, reject) => {
     readdir(inbox, (error, files) => {
       error
@@ -70,4 +92,4 @@ promiseReadDir(inbox)
       promiseWriteFile(outbox, file, data)
     })
   })
-})
+}) */

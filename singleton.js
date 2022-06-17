@@ -1,23 +1,23 @@
-class Marker {
+class MarkerPlayer {
     constructor(){
-        this.points = 'zero'
+        this.marker = [];
     }
 
-    addPoints(){
-        this.points < 10
-            ? this.points + 1
-            : console.log('you win')
+    insertPlayer(player){
+        this.marker.push({name: player.name, score: 0});
     }
 
-    subtractPoints(){
-        this.points >= 0
-            ? this.points - 1
-            : console.log('you lose')
+    addSubtractPoints(){
+        for( let player of this.marker){
+            let number = Math.floor(Math.random() * ( 100 + 1 )) - 50  // random number between -50 and 50
+            player.score += number;
+        }
     }
 
-    totalPoints(){
-        return this.points
+    winnerScore(){
+        this.marker.sort((a, b) => b.score - a.score);
+        console.log(`The Winner is ${this.marker[0].name} with a score of ${this.marker[0].score}`)
     }
 }
 
-exports.module = new Marker()
+module.exports = new MarkerPlayer()
