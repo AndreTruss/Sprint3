@@ -18,7 +18,7 @@ game.insertPlayer(player2);
 game.insertPlayer(player3);
 game.insertPlayer(player4);
 
-game.addSubtractPoints();
+game.addSubtractPoints();  // play two times
 game.addSubtractPoints();
 
 game.winnerScore();
