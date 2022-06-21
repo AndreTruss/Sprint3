@@ -8,7 +8,10 @@ module.exports = class Middleware {
         this.stack.push(middlewares)
     } 
 
-    invoke() {
+    async invokePipeline() {
+        for (let middleware of this.stack) {
+            return await middleware
+        }
 
     }
 }
