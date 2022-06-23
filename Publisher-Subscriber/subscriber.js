@@ -1,30 +1,35 @@
-const amqp = require('amqplib/callback_api');
+const amqp = require('amqplib');
 
-amqp.connect('amqp://localhost', function(error0, connection) {
-    if (error0) {
-        throw error0;
+class Subscriber {
+
+    constructor( hostConnection, queue ) {
+        this.hostConnection = hostConnection;
+        this.queue = queue;
     }
-    connection.createChannel(function(error1, channel) {
-        if (error1) {
-            throw error1;
+
+    async receiveMessage() {
+
+        try {
+            this.connection = await amqp.connect(this.hostConnection)
+
+            this.channel = await this.connection.createChannel()
+
+            await this.channel.assertQueue( this.queue, { durable: false });
+
+            console.log(" [*] Waiting for messages in %s.", this.queue);
+
+            await this.channel.consume( this.queue, function(msg) { console.log(" [x] Received %s", msg.content.toString()) }, { noAck: true } );
+
+        } catch (error){
+            console.log(error)
         }
 
-        const queue = 'Queue';
+        setTimeout(function() {
+            process.exit(0);
+        }, 500);
+    }
+}
 
-        channel.assertQueue(queue, {
-            durable: false
-        });
+const subscriber = new Subscriber( 'amqp://localhost', 'MyQueue' )
+subscriber.receiveMessage()
 
-        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
-
-        channel.consume(queue, function(msg) {
-            console.log(" [x] Received %s", msg.content.toString());
-        }, {
-            noAck: true
-        });
-    });
-    setTimeout(function() {
-        connection.close();
-        process.exit(0);
-    }, 500);
-});
