@@ -1,12 +1,7 @@
-const markerPlayer = require('./singleton.js');
+const MarkerPlayer = require('./singleton.js');
+const Player = require('./player.js')
 
-const game = markerPlayer;
-
-class Player {
-    constructor( name ){
-        this.name = name;
-    }
-}
+const game = new MarkerPlayer();
 
 const player1 = new Player('Ricky');
 const player2 = new Player('John');
@@ -18,11 +13,12 @@ game.insertPlayer(player2);
 game.insertPlayer(player3);
 game.insertPlayer(player4);
 
-game.addSubtractPoints();  // play two times
+game.addSubtractPoints();  // play game two times
 game.addSubtractPoints();
 
 game.winnerScore();
 
-// game1 === game Singleton works
-/* const game1 = markerPlayer 
+// Verify Singleton class
+/* const game1 = new MarkerPlayer() 
 console.log(game, game1) */
+// game1 === game Singleton works

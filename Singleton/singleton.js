@@ -1,6 +1,12 @@
 class MarkerPlayer {
     constructor(){
         this.marker = [];
+
+        if( typeof MarkerPlayer.instance === 'object') {
+            return MarkerPlayer.instance
+        }
+        MarkerPlayer.instance = this
+        return this
     }
 
     insertPlayer(player){
@@ -20,4 +26,7 @@ class MarkerPlayer {
     }
 }
 
-module.exports = new MarkerPlayer()
+module.exports = MarkerPlayer
+
+// Other way to create Singleton
+//module.exports = new MarkerPlayer()
