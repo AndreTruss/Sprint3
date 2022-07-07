@@ -11,7 +11,7 @@ class Game {
   }
 
   addSubtractPoints ( player ){
-    let indexPlayer = this.playerInGame.marker.name.indexOf(player.name)
+    let indexPlayer = this.playerInGame.marker.indexOf(player.name)
     console.log(indexPlayer)
     let number = Math.floor(Math.random() * ( 100 + 1 )) - 50  // random number between -50 and 50
     this.playerInGame.marker.score += number;
