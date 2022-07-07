@@ -1,9 +1,9 @@
-const MarkerPlayer = require('./singleton');
+
 const Player = require('./player')
 const Game = require('./game')
 
-const game = new Game();
-const game1 = new Game();
+const game1 = new Game('1Joc');
+const game2 = new Game('2Joc');
 
 const player1 = new Player('Ricky');
 const player2 = new Player('John');
@@ -11,19 +11,21 @@ const player3 = new Player('Mary');
 const player4 = new Player('Susan');
 const player5 = new Player('Victoria');
 
-game.insertPlayer(player1);
-game.insertPlayer(player2);
-game.insertPlayer(player3);
-game1.insertPlayer(player4);
-game1.insertPlayer(player5);
+game1.insertPlayer(game1, player1);
+game1.insertPlayer(game1, player2);
+game1.insertPlayer(game1, player3);
+game2.insertPlayer(game2, player4);
+game2.insertPlayer(game2, player5);
 
-game.addSubtractPoints();  // play game two times
-game1.addSubtractPoints();
+game1.addSubtractPoints(player1);  // play game two times
+game1.addSubtractPoints('John');
+game1.addSubtractPoints('Mary');
+game2.addSubtractPoints('Susan');
+game2.addSubtractPoints('Victoria');
 
-const marker = new MarkerPlayer()
+game1.playerInGame.winnerScore();
+game2.playerInGame.winnerScore();
 
-marker.winnerScore(game);
-marker.winnerScore(game1);
 
 // Verify Singleton class
 /* const game1 = new MarkerPlayer() 
