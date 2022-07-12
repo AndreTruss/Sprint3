@@ -16,4 +16,4 @@ app.use(
   console.log(`Third middleware: ${multiplication( data[2].a, data[2].b ) / 2}`)
 );
 
-app.invokePipeline()
+app.execute()
