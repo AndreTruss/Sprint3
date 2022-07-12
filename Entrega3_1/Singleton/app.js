@@ -7,23 +7,33 @@ const game = new Game();
 const player1 = new Player('Ricky');
 const player2 = new Player('John');
 const player3 = new Player('Mary');
-const player4 = new Player('Susan');
+const player4  = new Player('Susan');
 const player5 = new Player('Victoria');
 
-game.insertPlayer(player1);
-game.insertPlayer(player2);
-game.insertPlayer(player3);
-game.insertPlayer(player4);
-game.insertPlayer(player5);
+game.createGame('Game1');
+game.createGame('Game2');
 
+game.insertPlayer( 'Game1', player1);
+game.insertPlayer( 'Game1', player2);
+game.insertPlayer( 'Game1', player3);
+game.insertPlayer( 'Game2', player4);
+game.insertPlayer( 'Game2', player5);
+//console.log(game)
 
-game.addSubtractPoints();  // play game two times
-game.addSubtractPoints();
+game.addSubtractPoints( 'Game1', player1);  
+game.addSubtractPoints( 'Game1', player2);
+game.addSubtractPoints( 'Game1', player3);
+game.addSubtractPoints( 'Game2', player4);
+game.addSubtractPoints( 'Game2', player5);
 
-game.playerInGame.winnerScore();
+game.winnerScore( 'Game1' );
+game.winnerScore( 'Game2' );
 
+console.log(game.markPoints.marker)
 
 // Verify Singleton class
-/* const game1 = new MarkerPlayer() 
-console.log(game, game1) */
+
+/* const game1 = new Game() 
+console.log(game1.markPoints.marker) */
+
 // game1 === game Singleton works
