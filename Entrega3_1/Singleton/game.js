@@ -20,7 +20,7 @@ class Game {
 
   winnerScore( nameGame ) {      
     let score = Object.values(this.markPoints.marker[nameGame]);
-    let index = score.indexOf(Math.max(...score))
+    let index = score.indexOf( Math.max(...score) )
     let winner = Object.keys(this.markPoints.marker[nameGame]);
     console.log(`The Winner of game ${nameGame} is ${winner[index]} with a score of ${Math.max(...score)}`)   
   }

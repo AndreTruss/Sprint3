@@ -29,7 +29,7 @@ game.addSubtractPoints( 'Game2', player5);
 game.winnerScore( 'Game1' );
 game.winnerScore( 'Game2' );
 
-console.log(game.markPoints.marker)
+console.log('\nTo verify winner:', game.markPoints.marker)
 
 // Verify Singleton class
 
