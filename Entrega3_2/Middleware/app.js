@@ -1,6 +1,6 @@
 const data = require('./parameters.json');
 const Middleware = require('./middleware');
-const { addiction, subtraction, multiplication } = require('./operations')
+const Calculator = require('./operations')
 
 const app = new Middleware();
 

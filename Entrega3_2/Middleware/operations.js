@@ -1,7 +1,11 @@
-const addiction = ( a, b ) => { return a + b }
+class Calculator {
 
-const subtraction = ( a, b ) => { return a - b }
+addiction = ( a, b ) => { return a + b }
 
-const multiplication = ( a, b ) => { return a * b }
+subtraction = ( a, b ) => { return a - b }
 
-module.exports = { addiction, subtraction, multiplication }
+multiplication = ( a, b ) => { return a * b }
+
+}
+
+module.exports = Calculator
