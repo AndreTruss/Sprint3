@@ -1,19 +1,34 @@
-const data = require('./parameters.json');
-const Middleware = require('./middleware');
+const datas = require('./parameters.json')
+const Middleware = require('./middleware')
 const Calculator = require('./operations')
 
-const app = new Middleware();
+const calculator = new Calculator() 
 
-app.use( 
-  console.log(`First middleware: ${addiction( data[0].a, data[0].b ) ** 2}`)
- );
+const app = new Middleware( calculator )
 
-app.use( 
-  console.log(`Second middleware: ${subtraction( data[1].a, data[1].b ) ** 3}`)
- );
+function square( data, next ) {
+  data.a = data.a ** 2
+  data.b = data.b ** 2
+  console.log(`Square result: ${JSON.stringify( data )}`)
+      
+}
 
-app.use( 
-  console.log(`Third middleware: ${multiplication( data[2].a, data[2].b ) / 2}`)
-);
+function cube( data, next ) {
+  data.a = data.a ** 3
+  data.b = data.b ** 3
+  console.log(`Cube result: ${JSON.stringify( data )}`)
+  
+}
 
-app.execute()
+function divide( data, next ) {
+  data.a = data.a / 2
+  data.b = data.b / 2
+  console.log(`Divide result: ${JSON.stringify( data )}\n`)
+  
+}
+
+app.use( square )
+app.use( cube )
+app.use( divide )
+
+app.execute( datas )

@@ -1,22 +1,28 @@
 class Middleware {
 
-    constructor() {
+    constructor( target ) {
         this.stack = []
+        this.target = target
     }
 
     use(middlewares) {
         this.stack.push(middlewares)
     } 
 
-    async execute() {
+    async execute(data) {
         for (let middleware of this.stack) {
-            return await middleware
+            await middleware(data)
         }
-
+        console.log(`Sum result is ${this.target.addiction(data.a, data.b)}`)
+        console.log(`Subtraction result is ${this.target.subtraction(data.a, data.b)}`)
+        console.log(`Multiplication result is ${this.target.multiplication(data.a, data.b)}`)
     }
 }
 
-class Middlewares {
+module.exports = Middleware
+
+
+/* class Middlewares {
     constructor(target) {
         this.middlewares = [];
         this.req = {}; 
@@ -45,6 +51,4 @@ class Middlewares {
     use (funcion) {
         this.middlewares.push(funcion);
     }    
-  }
-
-  module.exports = Middlewares
+  } */
