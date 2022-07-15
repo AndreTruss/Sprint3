@@ -29,9 +29,9 @@ This tutorial assumes RabbitMQ is installed and running on localhost on the stan
 
 Execute in two different terminal:
 ```
-    ./publisher.js
+    node subscriber
 ```
 ```
-    ./subscriber.js
+    node publisher
 ```
 The consumer will print the message it gets from the publisher via RabbitMQ. The consumer will keep running, waiting for messages (Use Ctrl-C to stop it)
