@@ -22,11 +22,16 @@ Execute in the terminal with:
 ## Publisher - Subscriber
 Utilitzant RabbitMQ com a element imprescindible crea una queue on una classe Publisher publiqui missatges que siguin llegits per una classe Subscriber. Mostra l'emissió i recepció de cada missatge en consoles diferents.
 ### Tecnologia:
+```
     npm install amqplib
+```
+This tutorial assumes RabbitMQ is installed and running on localhost on the standard port (5672)
 
 Execute in two different terminal:
 ```
-    node publisher
-    node subscriber
+    ./publisher.js
 ```
-    
+```
+    ./subscriber.js
+```
+The consumer will print the message it gets from the publisher via RabbitMQ. The consumer will keep running, waiting for messages (Use Ctrl-C to stop it)
