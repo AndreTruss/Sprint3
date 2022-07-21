@@ -6,6 +6,8 @@ const {
 const {
   join
 } = require("path");
+const fs = require( 'fs' );
+
 const inbox = join(__dirname, "inbox");
 const outbox = join(__dirname, "outbox");
 
@@ -14,6 +16,9 @@ const reverseText = str =>
   .split("")
   .reverse()
   .join("");
+
+const folder = './outbox';
+!fs.existsSync(folder) ? fs.mkdirSync(folder): console.log("A folder with this name already exists");
 
 // Read and reverse contents of text files in a directory
 /* readdir(inbox, (error, files) => {

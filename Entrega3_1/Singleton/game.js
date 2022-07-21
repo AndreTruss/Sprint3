@@ -1,6 +1,6 @@
 const MarkerPlayer = require('./singleton');
 
-class Game {
+class Games {
   constructor(){
     this.markPoints = new MarkerPlayer()
   }
@@ -26,4 +26,4 @@ class Game {
   }
 }
 
-module.exports = Game
+module.exports = Games
