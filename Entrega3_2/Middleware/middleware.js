@@ -13,7 +13,7 @@ class Middleware {
         const next = ( index ) => {
             const middleware = this.stack[ index ];
 
-            middleware( data, () => {
+            middleware( data, () => {  // This function is the 'next' function in app.js
                 return next( index + 1 );
             })
         }

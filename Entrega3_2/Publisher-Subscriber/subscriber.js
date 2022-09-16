@@ -18,7 +18,8 @@ class Subscriber {
 
             console.log(" [*] Waiting for messages in %s.", this.queue);
 
-            await this.channel.consume( this.queue, function(msg) { console.log(" [x] Received %s", msg.content.toString()) }, { noAck: true } );
+            await this.channel.consume( this.queue, ( msg ) => {
+                console.log(" [x] Received %s", msg.content.toString()) }, { noAck: true } );
 
         } catch (error){
             console.log(error)
